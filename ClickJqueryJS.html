@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mision Marcelo Poblete</title>
+</head>
+
+<body>
+    
+    <canvas id="canvas" width="400" height="400"></canvas>
+     <p id="mensaje">.</p>
+     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+       <script>
+        var eventoClick = function (event) {
+            document.write("Click! " + "X = " + event.pageX + " Y = " + event.pageY);
+            document.write(traeTexto(largo,tamano));       
+        }
+
+        $("mensaje").click(eventoClick);
+    </script>
+    
+    
+    <script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    
+    var color= new Array("red","Yellow","orange","blue","SkyBlue","green");
+
+    function colorAzar(){
+        var indiceColor = Math.floor(Math.random() * color.length);
+        return color[indiceColor];
+    };
+    
+    var posicion =0;
+    var tamano = 400;
+    var largo=0;
+    
+    setInterval(function () {
+        ctx.clearRect(0, 0, 400, 400);
+        ctx.fillRect(posicion, 0, largo, tamano);
+        posicion++;
+        largo++;
+        tamano--;
+        
+        
+        if (posicion >400){
+            posicion=0;
+            largo=0;
+            tamano = 400;
+            ctx.fillStyle = colorAzar();
+            }
+        }, 30);
+
+   $("#canvas").click(function(){
+        ctx.fillStyle = colorAzar();
+        $("p").text("Las dimensiones de la figura son: Largo="+ largo +" y el Alto es="+ tamano);
+    });
+    
+
+    
+
+   </script>
+</body>
+</html>
